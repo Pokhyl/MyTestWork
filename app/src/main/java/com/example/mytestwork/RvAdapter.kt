@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mytestwork.databinding.ItemUserBinding
 import com.example.mytestwork.db.UserEntity
 
@@ -14,13 +15,14 @@ class RvAdapter(val list: MutableList<UserEntity> ): RecyclerView.Adapter<UserVi
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.binding.name.text = list[position].userName
+        holder.binding.name1.text = list[position].userName
         holder.binding.api.text = list[position].api
         holder.binding.constrainLayout.setOnClickListener {
             val intent = Intent(holder.binding.root.context, UserActivity::class.java)
             intent.putExtra("user", list[position])
             holder.binding.root.context.startActivity(intent)
         }
+        Glide.with(holder.binding.root.context).load(list[position].image).error(R.drawable.ic_launcher_foreground).into(holder.binding.imageView)
 
 
     }

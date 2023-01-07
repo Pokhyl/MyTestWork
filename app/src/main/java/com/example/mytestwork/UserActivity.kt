@@ -3,6 +3,7 @@ package com.example.mytestwork
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.example.mytestwork.databinding.ActivityUserBinding
 import com.example.mytestwork.db.UserEntity
 
@@ -17,6 +18,7 @@ class UserActivity : AppCompatActivity() {
         binding.id.text = user?.id.toString()
         binding.name1.text = user?.userName
         binding.src.text = user?.api
-       
+        Glide.with(this).load(user?.image).error(R.drawable.ic_launcher_foreground).into(binding.imageView2)
+
     }
 }
